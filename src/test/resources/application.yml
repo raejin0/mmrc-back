@@ -1,0 +1,39 @@
+server.port: 7071
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    hikari:
+      jdbc-url: jdbc:h2:C:/works/IdeaProjects/MMRC-BACK-1/mmrc_test
+      username:
+      password:
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      mode: always  # always: 서버 시작시 항상 하단경로의 sql문을 실행
+      data-locations: classpath:data.sql
+      continue-on-error: false
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true #hiberna.ddl-auto 동작 후 실행
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: ture  # print jpql
+        dialect: org.hibernate.dialect.H2Dialect
+  messages:
+    basename: l10n/errors, l10n/messages
+
+logging.level:
+  org.hibernate.SQL: debug        # leave as log, substitute for 'show_sql (print in console: System.out.println)'
+
+jwt:
+  header: Authorization
+  secret: bWlyYWVpdC1tZWV0aW5ncm9vbS1yZXNlcnZhdGlvbi1zeXN0ZW0tYW5kLXRoaXMtaXMtdGhlLWp3dC1zZWNyZXQtaW4tMjAyMi1pbi1tb29uanVuZ2RvbmctdmFtb3MK # echo 'miraeit-meetingroom-reservation-system-and-this-is-the-jwt-secret-in-2022-in-moonjungdong-vamos'|base64
+  token-validity-in-seconds: 21600
+
+initial.password: mirae1
